@@ -1,7 +1,8 @@
-package com.example.news.data.network.db
+package com.example.news.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.news.data.model.News
 
 @Dao
 public interface NewsDao {
