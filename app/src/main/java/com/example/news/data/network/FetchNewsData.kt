@@ -12,15 +12,16 @@ import java.util.concurrent.Callable
 class FetchNewsData {
 
     companion object {
-         fun fetchData(context: Context, country_code: String): MutableLiveData<List<News>> {
-             var allNews = MutableLiveData<List<News>>()
+
+        fun fetchData(context: Context, country_code: String): MutableLiveData<News> {
+             var allNews = MutableLiveData<News>()
              val apiClientInterface: ApiClientInterface? = ApiClient.getApiClient()?.create(ApiClientInterface::class.java)
-             val news: Call<List<News>>? = apiClientInterface?.getAllNewsByCountry(country_code)
-             news?.enqueue(object:  Callback<List<News>> {
-                 override fun onFailure(call: Call<List<News>>, t: Throwable) {
+             val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
+             news?.enqueue(object:  Callback<News> {
+                 override fun onFailure(call: Call<News>, t: Throwable) {
                  }
 
-                 override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
+                 override fun onResponse(call: Call<News>, response: Response<News>) {
                      allNews.value = response.body()
                  }
              })

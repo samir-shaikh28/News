@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -12,26 +11,19 @@
         tools:context=".MainActivity">
 
 
-
-    <com.arlib.floatingsearchview.FloatingSearchView
-            android:id="@+id/floating_search_view"
+    <com.lapism.searchview.widget.SearchView
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
-            app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
-            app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
-            app:floatingSearch_searchHint="Search..."
-            app:floatingSearch_suggestionsListAnimDuration="250"
-            app:floatingSearch_showSearchKey="false"
-            app:floatingSearch_leftActionMode="showSearch"
-            app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+            android:layout_height="wrap_content" />
 
     <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:navGraph="@navigation/nav_graph" >
+            android:layout_height="731dp"
+
+            app:navGraph="@navigation/nav_graph"
+            tools:layout_editor_absoluteX="0dp" tools:layout_editor_absoluteY="80dp">
 
     </fragment>
 

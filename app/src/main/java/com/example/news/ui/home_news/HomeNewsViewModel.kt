@@ -9,7 +9,7 @@ import com.example.news.data.model.News
 class HomeNewsViewModel(app: Application) : AndroidViewModel(app) {
 
     var context: Context = app
-    val allNews: LiveData<List<News>>
+    val allNews: LiveData<News>
         get() = HomeNewsRepo.fetchData(context, "in")
 
 

@@ -31,9 +31,9 @@ class HomeNewsFragment : Fragment() {
         var allNewsViewModel = ViewModelProviders.of(this).get(HomeNewsViewModel::class.java)
         allNewsViewModel.allNews.observe(this, Observer { response ->
             Log.d("TAGGGG", "bserving")
-            Log.d("TAGGGG", response.toString())
+//            Log.d("TAGGGG", response.toString())
 
-            text.text = response.toString()
+            text.text = response.articles?.size.toString()
         })
     }
 

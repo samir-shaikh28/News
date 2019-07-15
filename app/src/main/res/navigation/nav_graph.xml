@@ -8,6 +8,6 @@
               android:label="fragment_home_news" tools:layout="@layout/fragment_home_news">
         <action android:id="@+id/action_homeNewsFragment_to_serchNewsFragment" app:destination="@id/serchNewsFragment"/>
     </fragment>
-    <fragment android:id="@+id/serchNewsFragment" android:name="com.example.news.SerchNewsFragment"
+    <fragment android:id="@+id/serchNewsFragment" android:name="com.example.news.ui.search_news.SerchNewsFragment"
               android:label="fragment_serch_news" tools:layout="@layout/fragment_serch_news"/>
 </navigation>

@@ -17,14 +17,15 @@ class HomeNewsRepo {
 
 
     companion object {
-        fun fetchData(context: Context, country_code: String): MutableLiveData<List<News>> {
-            var allNews = MutableLiveData<List<News>>()
+        fun fetchData(context: Context, country_code: String): MutableLiveData<News> {
+
+            var allNews = MutableLiveData<News>()
             val apiClientInterface: ApiClientInterface? = ApiClient.getApiClient()?.create(ApiClientInterface::class.java)
-            val news: Call<List<News>>? = apiClientInterface?.getAllNewsByCountry(country_code)
+            val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
 
 
-            news?.enqueue(object: Callback<List<News>> {
-                override fun onFailure(call: Call<List<News>>, t: Throwable) {
+            news?.enqueue(object: Callback<News> {
+                override fun onFailure(call: Call<News>, t: Throwable) {
                     Log.d("TAGGGG", "Error: "+t.message)
                     Log.d("TAGGGG", "Error: "+t.cause)
                     Log.d("TAGGGG", "Error: "+t.localizedMessage)
@@ -32,7 +33,7 @@ class HomeNewsRepo {
 
                 }
 
-                override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
+                override fun onResponse(call: Call<News>, response: Response<News>) {
                     Log.d("TAGGGG", "Response: " +response.headers())
                     Log.d("TAGGGG", "Response: " +response.raw())
 
