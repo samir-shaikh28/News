@@ -5,8 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-public interface ApiClientInterface {
-
+interface ApiClientInterface {
 
     @GET("/v2/top-headlines?apiKey=1d91d1196b464554b15cab5ac74c6667")
     fun getAllNewsByCountry(@Query("country") country_code: String): Call<News>

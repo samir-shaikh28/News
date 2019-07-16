@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:orientation="vertical"
-             android:layout_height="match_parent"
-             tools:context=".ui.home_news.HomeNewsFragment">
+<layout>
+    <data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:id="@+id/text"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="20sp"
+    </data>
+
+
+<LinearLayout
+        android:background="#eee"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        tools:context=".ui.home_news.HomeNewsFragment">
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_news"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="match_parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
 
 </LinearLayout>
+</layout>

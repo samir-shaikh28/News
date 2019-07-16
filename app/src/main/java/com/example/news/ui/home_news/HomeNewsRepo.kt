@@ -13,27 +13,18 @@ import retrofit2.Response
 
 class HomeNewsRepo {
 
-
-
-
     companion object {
         fun fetchNewsByCountry(context: Context, country_code: String): MutableLiveData<News> {
-            Log.d("TAGGGG", "In Repo")
 
             var allNews = MutableLiveData<News>()
+
             val apiClientInterface: ApiClientInterface? = ApiClient.getApiClient()?.create(ApiClientInterface::class.java)
             val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
 
-
             news?.enqueue(object: Callback<News> {
-                override fun onFailure(call: Call<News>, t: Throwable) {
-                    Log.d("TAGGGG", "Error: " +t.message)
-
-                }
+                override fun onFailure(call: Call<News>, t: Throwable) {}
 
                 override fun onResponse(call: Call<News>, response: Response<News>) {
-                    Log.d("TAGGGG", "Response: "+response.raw())
-
                     allNews.value = response.body()
                 }
             })

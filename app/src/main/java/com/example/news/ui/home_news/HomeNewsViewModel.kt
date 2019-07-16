@@ -18,10 +18,6 @@ class HomeNewsViewModel(app: Application) : AndroidViewModel(app) {
 //    }
 
     fun getNewsByCountry(context: Context, country_code: String) {
-        Log.d("TAGGGG", "In View Model")
         allNews = HomeNewsRepo.fetchNewsByCountry(context, country_code)
     }
-
-
-
 }
