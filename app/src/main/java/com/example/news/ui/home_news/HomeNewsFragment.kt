@@ -29,10 +29,12 @@ class HomeNewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var allNewsViewModel = ViewModelProviders.of(this).get(HomeNewsViewModel::class.java)
-        allNewsViewModel.allNews.observe(this, Observer { response ->
-            Log.d("TAGGGG", "bserving")
-//            Log.d("TAGGGG", response.toString())
 
+        if (allNewsViewModel.allNews.value == null) {
+            allNewsViewModel.getNewsByCountry(context!!.applicationContext, "in")
+        }
+
+        allNewsViewModel.allNews.observe(this, Observer { response ->
             text.text = response.articles?.size.toString()
         })
     }

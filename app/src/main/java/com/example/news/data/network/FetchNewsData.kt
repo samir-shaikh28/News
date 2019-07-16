@@ -1,6 +1,7 @@
 package com.example.news.data.network
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.news.data.model.News
@@ -19,9 +20,15 @@ class FetchNewsData {
              val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
              news?.enqueue(object:  Callback<News> {
                  override fun onFailure(call: Call<News>, t: Throwable) {
+                     Log.d("TAGGGG", "Error: " +t.message)
+
                  }
 
                  override fun onResponse(call: Call<News>, response: Response<News>) {
+                     Log.d("TAGGGG", "response" +response.message())
+                     Log.d("TAGGGG", "response " +response.raw())
+
+
                      allNews.value = response.body()
                  }
              })
