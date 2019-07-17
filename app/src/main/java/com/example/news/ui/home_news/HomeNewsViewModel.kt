@@ -10,14 +10,15 @@ import com.example.news.data.model.News
 
 class HomeNewsViewModel(app: Application) : AndroidViewModel(app) {
 
-//    var context: Context = app
+    /**
+    * @return @Nullable LiveData<News>
+    * */
     var allNews: LiveData<News> = MutableLiveData<News>()
 
-//    init{
-//        allNews = HomeNewsRepo.fetchNewsByCountry(context, "in")
-//    }
-
-    fun getNewsByCountry(context: Context, country_code: String) {
-        allNews = HomeNewsRepo.fetchNewsByCountry(context, country_code)
+    /**
+    * Fetch Data From Repository
+    * */
+    fun getNewsByCountry(country_code: String) {
+        allNews = HomeNewsRepo.fetchNewsByCountry(country_code)
     }
 }

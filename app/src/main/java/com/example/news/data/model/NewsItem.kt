@@ -13,14 +13,14 @@ import com.example.news.R
 
 @BindingAdapter("new_item_image")
 fun loadImage(view: ImageView, imageUrl: String?) {
-    if(!imageUrl.isNullOrBlank())
-        Glide.with(view.getContext())
+    if (!imageUrl.isNullOrBlank())
+        Glide.with(view.context)
+            .applyDefaultRequestOptions(RequestOptions().placeholder(R.drawable.progress_bar))
             .load(imageUrl)
-            .apply(RequestOptions().placeholder(R.drawable.progress_bar))
             .into(view)
 }
 
-data class NewsItem (
+data class NewsItem(
     @PrimaryKey val _id: Int,
     @ColumnInfo(name = "author") val author: String,
     @ColumnInfo(name = "title") val title: String,

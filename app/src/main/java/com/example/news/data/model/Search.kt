@@ -1,3 +1,7 @@
 package com.example.news.data.model
 
-data class Search (val text: String)
+import androidx.databinding.BindingAdapter
+
+//@BindingAdapter("")
+
+data class Search(val text: String)

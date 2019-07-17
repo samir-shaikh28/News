@@ -35,23 +35,12 @@ class HomeNewsAdapter(data: List<NewsItem>) : RecyclerView.Adapter<HomeNewsAdapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val newsItem: NewsItem? = articles[position]
-
-        if(articles[position].urlToImage.isNullOrBlank()) {
-            holder.itemView.news_image.visibility = View.GONE
-        } else { holder.itemView.news_image.visibility = View.VISIBLE
-        }
-
-
         binding.newsItem = articles[position]
-
     }
 
 
     class ViewHolder(view: HomeNewsItemsBinding) : RecyclerView.ViewHolder(view.root) {
-        var bindingItem: HomeNewsItemsBinding = view
-
+        val bindingItem: HomeNewsItemsBinding = view
     }
-
 
 }

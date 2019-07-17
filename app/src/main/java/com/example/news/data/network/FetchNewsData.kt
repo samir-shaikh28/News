@@ -14,25 +14,21 @@ class FetchNewsData {
 
     companion object {
 
-        fun fetchData(context: Context, country_code: String): MutableLiveData<News> {
-             var allNews = MutableLiveData<News>()
-             val apiClientInterface: ApiClientInterface? = ApiClient.getApiClient()?.create(ApiClientInterface::class.java)
-             val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
-             news?.enqueue(object:  Callback<News> {
-                 override fun onFailure(call: Call<News>, t: Throwable) {
-                     Log.d("TAGGGG", "Error: " +t.message)
+        fun fetchData(context: Context, country_code: String): News? {
+            var allNews = MutableLiveData<News>()
+            val apiClientInterface: ApiClientInterface? =
+                ApiClient.retrofit.create(ApiClientInterface::class.java)
+            val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
+            news?.enqueue(object : Callback<News> {
+                override fun onFailure(call: Call<News>, t: Throwable) {
 
-                 }
+                }
 
-                 override fun onResponse(call: Call<News>, response: Response<News>) {
-                     Log.d("TAGGGG", "response" +response.message())
-                     Log.d("TAGGGG", "response " +response.raw())
-
-
-                     allNews.value = response.body()
-                 }
-             })
-             return allNews
+                override fun onResponse(call: Call<News>, response: Response<News>) {
+                    allNews.value = response.body()
+                }
+            })
+            return allNews.value
         }
     }
 }

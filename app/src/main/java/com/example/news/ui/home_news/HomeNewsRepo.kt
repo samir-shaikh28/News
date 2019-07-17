@@ -2,6 +2,7 @@ package com.example.news.ui.home_news
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.news.data.model.News
 import com.example.news.data.network.ApiClient
@@ -14,14 +15,18 @@ import retrofit2.Response
 class HomeNewsRepo {
 
     companion object {
-        fun fetchNewsByCountry(context: Context, country_code: String): MutableLiveData<News> {
+        /**
+         * Fetch Data from server
+         * @param country_code String
+         * @return @Nullable MutableLiveData<News>
+         */
+        fun fetchNewsByCountry(country_code: String): MutableLiveData<News> {
 
-            var allNews = MutableLiveData<News>()
+            val allNews = MutableLiveData<News>()
+            val apiClientInterface: ApiClientInterface = ApiClient.retrofit.create(ApiClientInterface::class.java)
+            val news: Call<News> = apiClientInterface.getAllNewsByCountry(country_code)
 
-            val apiClientInterface: ApiClientInterface? = ApiClient.getApiClient()?.create(ApiClientInterface::class.java)
-            val news: Call<News>? = apiClientInterface?.getAllNewsByCountry(country_code)
-
-            news?.enqueue(object: Callback<News> {
+            news.enqueue(object : Callback<News> {
                 override fun onFailure(call: Call<News>, t: Throwable) {}
 
                 override fun onResponse(call: Call<News>, response: Response<News>) {
@@ -31,5 +36,4 @@ class HomeNewsRepo {
             return allNews
         }
     }
-
 }

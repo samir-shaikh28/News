@@ -3,7 +3,6 @@ package com.example.news.ui.home_news
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,31 +17,37 @@ import com.example.news.databinding.FragmentHomeNewsBinding
 
 class HomeNewsFragment : Fragment() {
 
-    lateinit var adapter: HomeNewsAdapter
-
-    lateinit var binding: FragmentHomeNewsBinding
+    private lateinit var mAdapter: HomeNewsAdapter
+    private lateinit var mBinding: FragmentHomeNewsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_news, container, false)
-        return binding.root
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_news, container, false)
+        return mBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //   binding.home_news
 
-        getActivity()?.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        /*
+        * Keep Screen in portrait mode for home screen
+        * */
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val allNewsViewModel = ViewModelProviders.of(this).get(HomeNewsViewModel::class.java)
 
+        /*
+        * Fetch data from server and update LiveData, if LiveData is null
+        * */
         if (allNewsViewModel.allNews.value == null) {
-            allNewsViewModel.getNewsByCountry(context!!.applicationContext, "in")
+            allNewsViewModel.getNewsByCountry("in")
         }
 
+        /*
+        * Observer the live data and keep updating UI
+        * */
         allNewsViewModel.allNews.observe(this, Observer { response ->
-            adapter = HomeNewsAdapter(response.articles)
-            binding.homeNews.adapter = adapter
+            mAdapter = HomeNewsAdapter(response.articles)
+            mBinding.homeNews.adapter = mAdapter
         })
     }
 }
