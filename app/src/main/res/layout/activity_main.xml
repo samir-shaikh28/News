@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.example.news.MainActivityViewModel" />
@@ -16,36 +15,20 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <LinearLayout
+        <com.lapism.searchview.widget.SearchView
+            app:search_hint="Search Here"
+            app:search_theme="play"
+            app:search_shape="oval"
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            />
 
-            <EditText
-                android:id="@+id/searchBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@={viewmodel.searchText}" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0.25"
-                android:onClick="@{() -> viewmodel.onSearch()}"
-                android:text="search" />
-        </LinearLayout>
-
-        <fragment
+        <LinearLayout
             android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:navGraph="@navigation/nav_graph"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="80dp" />
+            android:orientation="vertical" />
 
     </LinearLayout>
 </layout>

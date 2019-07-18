@@ -1,0 +1,27 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<data>
+
+</data>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/queryText"
+            android:padding="8dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:textSize="30sp"
+            android:text="Face App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <include
+            android:id="@+id/news_viewpager"
+            layout="@layout/news_viewpager"/>
+</LinearLayout>
+
+
+</layout>

@@ -1,24 +1,21 @@
-package com.example.news.ui.home_news
+package com.example.news.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.news.R
 import com.example.news.data.model.NewsItem
-import com.example.news.databinding.HomeNewsItemsBinding
-import kotlinx.android.synthetic.main.home_news_items.view.*
+import com.example.news.databinding.NewsItemsBinding
 
-class HomeNewsAdapter(data: List<NewsItem>) : RecyclerView.Adapter<HomeNewsAdapter.ViewHolder>() {
+class NewsItemAdapter(data: List<NewsItem>) : RecyclerView.Adapter<NewsItemAdapter.ViewHolder>() {
 
     var articles: List<NewsItem> = data
-    lateinit var binding: HomeNewsItemsBinding
+    lateinit var binding: NewsItemsBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        binding = DataBindingUtil.inflate(inflater, R.layout.home_news_items, parent, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.news_items, parent, false)
         return ViewHolder(binding)
     }
 
@@ -39,8 +36,8 @@ class HomeNewsAdapter(data: List<NewsItem>) : RecyclerView.Adapter<HomeNewsAdapt
     }
 
 
-    class ViewHolder(view: HomeNewsItemsBinding) : RecyclerView.ViewHolder(view.root) {
-        val bindingItem: HomeNewsItemsBinding = view
+    class ViewHolder(view: NewsItemsBinding) : RecyclerView.ViewHolder(view.root) {
+        val bindingItem: NewsItemsBinding = view
     }
 
 }
