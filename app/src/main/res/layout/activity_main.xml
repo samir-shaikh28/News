@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout>
+
     <data>
-        <variable name="search" type="com.example.news.MainActivityViewModel"/>
-        <variable name="text" type="com.example.news.data.model.Search"/>
+
+        <variable
+            name="viewmodel"
+            type="com.example.news.MainActivityViewModel" />
     </data>
 
-    <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent"
-            tools:context=".MainActivity">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-
-        <com.lapism.searchview.widget.SearchView
-                android:text="@{text.text}"
+            <EditText
                 android:id="@+id/searchBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="@={viewmodel.searchText}" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="0.25"
+                android:onClick="@{() -> viewmodel.onSearch()}"
+                android:text="search" />
+        </LinearLayout>
 
         <fragment
-                android:id="@+id/nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                app:navGraph="@navigation/nav_graph"
-                tools:layout_editor_absoluteX="0dp" tools:layout_editor_absoluteY="80dp">
-
-        </fragment>
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/nav_graph"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="80dp" />
 
     </LinearLayout>
-
 </layout>
