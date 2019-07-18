@@ -1,6 +1,7 @@
 package com.example.news.data.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.news.data.model.News
 
@@ -15,5 +16,5 @@ public interface NewsDao {
 
 
     @Query("select * from news")
-    fun selectAllNews(): LiveData<List<News>>
+    fun selectAllNews(): LiveData<News>
 }

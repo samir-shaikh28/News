@@ -38,14 +38,12 @@ class MainActivity : AppCompatActivity() {
         // Setting Default fragment to HomeNewsFragment
         changeFragment(homeFragment)
 
-
-
-
         binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
             override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
                 if (queryText.isNullOrBlank()) {
-                    changeFragment(homeFragment)
+                  changeFragment(homeFragment)
                 } else {
+
                     binding.searchBar.close()
                     query.putString("QUERY", queryText as String?)
                     searchFragment.arguments = query
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: CharSequence?) {
                 if(newText.isNullOrBlank()) {
-                    changeFragment(homeFragment)
+//                    changeFragment(homeFragment)
                 }
             }
 

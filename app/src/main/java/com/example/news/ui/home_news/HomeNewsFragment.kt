@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.news.MainActivity
 import com.example.news.R
 import com.example.news.databinding.FragmentHomeNewsBinding
 import com.example.news.ui.adapter.NewsItemAdapter
@@ -43,7 +44,7 @@ class HomeNewsFragment : Fragment() {
         * Fetch data from server and update LiveData, if LiveData is null
         * */
         if (allNewsViewModel.allNews.value == null) {
-            allNewsViewModel.getNewsByCountry("in")
+            allNewsViewModel.getNewsByCountry("in", activity!!.applicationContext)
         }
 
 

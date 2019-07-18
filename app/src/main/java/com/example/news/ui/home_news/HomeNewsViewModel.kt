@@ -1,5 +1,6 @@
 package com.example.news.ui.home_news
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,7 @@ class HomeNewsViewModel : ViewModel() {
     /**
     * Fetch Data From Repository
     * */
-    fun getNewsByCountry(country_code: String) {
-        allNews = HomeNewsRepo.fetchNewsByCountry(country_code)
+    fun getNewsByCountry(country_code: String, context: Context) {
+        allNews = HomeNewsRepo.fetchNewsByCountry(country_code, context)
     }
 }
