@@ -6,14 +6,13 @@ import androidx.room.*
 import com.example.news.data.model.News
 
 @Dao
-public interface NewsDao {
+interface NewsDao {
 
     @Insert
     fun insert(news: News)
 
     @Update
     fun update(news: News)
-
 
     @Query("select * from news")
     fun selectAllNews(): LiveData<News>

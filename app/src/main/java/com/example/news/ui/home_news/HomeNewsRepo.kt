@@ -17,9 +17,9 @@ import retrofit2.Response
 class HomeNewsRepo {
 
     companion object {
-
-        var allNews: LiveData<News> = MutableLiveData<News>()
-        val fetchNewsData = FetchNewsData()
+        // private var allNew: News? = null
+        private var allNews: LiveData<News> = MutableLiveData<News>()
+        private val fetchNewsData = FetchNewsData()
 
         /**
          * Fetch Data from server
@@ -27,34 +27,14 @@ class HomeNewsRepo {
          * @return @Nullable MutableLiveData<News>
          */
         fun fetchNewsByCountry(country_code: String, context: Context): LiveData<News> {
-
             allNews = NewsDatabaseInstance.getDbInstance(context).dao().selectAllNews()
-            Log.d("TAGGG","here" +allNews.value?.status)
-            return if(allNews.value != null) {
-                Log.d("TAGGG", "db has value")
-                allNews
-            } else {
-                Log.d("TAGGG", "db doesnot have value")
-                fetchNewsData.fetchNewsByCountry(country_code, context)
+            allNews.observeForever {
+                if (it == null) {
+                    fetchNewsData.fetchNewsByCountry(country_code, context)
+                }
             }
+            return allNews
 
-
-
-
-//
-//            //  val allNews = MutableLiveData<News>()
-//            val apiClientInterface: ApiClientInterface = ApiClient.retrofit.create(ApiClientInterface::class.java)
-//            val news: Call<News> = apiClientInterface.getAllNewsByCountry(country_code)
-//
-//            news.enqueue(object : Callback<News> {
-//                override fun onFailure(call: Call<News>, t: Throwable) {}
-//
-//                override fun onResponse(call: Call<News>, response: Response<News>) {
-//                    response.body()?.let { NewsDatabaseInstance.getDbInstance(context).dao().insert(it) }
-//                    allNews.value = response.body()
-//                }
-//            })
-//            return allNews
         }
     }
 }
