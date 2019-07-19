@@ -16,33 +16,45 @@ import java.util.concurrent.Callable
 class FetchNewsData {
 
 
+    fun fetchNewsByCountry(country_code: String, context: Context): MutableLiveData<News> {
 
-   fun fetchNewsByCountry(country_code: String, context: Context): MutableLiveData<News> {
+        val allNews = MutableLiveData<News>()
+        val apiClientInterface: ApiClientInterface = ApiClient.retrofit.create(ApiClientInterface::class.java)
+        val news: Call<News> = apiClientInterface.getAllNewsByCountry(country_code)
+        val newsDao: NewsDao = NewsDatabaseInstance.getDbInstance(context).dao()
 
-            val allNews = MutableLiveData<News>()
-            val apiClientInterface: ApiClientInterface = ApiClient.retrofit.create(ApiClientInterface::class.java)
-            val news: Call<News> = apiClientInterface.getAllNewsByCountry(country_code)
-            val newsDao: NewsDao = NewsDatabaseInstance.getDbInstance(context).dao()
+        news.enqueue(object : Callback<News> {
+            override fun onFailure(call: Call<News>, t: Throwable) {}
 
-            news.enqueue(object : Callback<News> {
-                override fun onFailure(call: Call<News>, t: Throwable) {}
-
-                override fun onResponse(call: Call<News>, response: Response<News>) {
+            override fun onResponse(call: Call<News>, response: Response<News>) {
+                if (newsDao.selectAllNews().value == null) {
+                    Log.d("TAGGG", "Insert")
                     InsertNewsAsync(newsDao).execute(response.body())
-                    NewsDatabaseInstance.getDbInstance(context).dao().insert(response.body()!!)
-                    allNews.value = response.body()
+                } else {
+                    Log.d("TAGGG", "Update")
+                    UpdateNewsAsync(newsDao).execute(response.body())
                 }
-            })
-            return allNews
+                allNews.value = response.body()
+            }
+        })
+        return allNews
+    }
+
+
+    companion object {
+        class InsertNewsAsync(private val newsDao: NewsDao?) : AsyncTask<News, Void, Void>() {
+            override fun doInBackground(vararg news: News): Void? {
+                newsDao?.insert(news[0])
+                return null
+            }
         }
 
 
-    inner class InsertNewsAsync(private val newsDao: NewsDao?) : AsyncTask<News, Void, Void>() {
-
-        override fun doInBackground(vararg news: News): Void? {
-            Log.d("TAGGG", "inserting data")
-            newsDao?.insert(news[0])
-            return null
+        class UpdateNewsAsync(private val newsDao: NewsDao?) : AsyncTask<News, Void, Void>() {
+            override fun doInBackground(vararg news: News): Void? {
+                newsDao?.update(news[0])
+                return null
+            }
         }
     }
 }

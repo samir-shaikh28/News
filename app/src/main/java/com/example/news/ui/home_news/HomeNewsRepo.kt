@@ -29,9 +29,8 @@ class HomeNewsRepo {
         fun fetchNewsByCountry(country_code: String, context: Context): LiveData<News> {
             allNews = NewsDatabaseInstance.getDbInstance(context).dao().selectAllNews()
             allNews.observeForever {
-                if (it == null) {
+                if (it == null)
                     fetchNewsData.fetchNewsByCountry(country_code, context)
-                }
             }
             return allNews
 
