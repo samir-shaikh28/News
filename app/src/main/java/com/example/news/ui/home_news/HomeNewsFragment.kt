@@ -43,7 +43,7 @@ class HomeNewsFragment : Fragment() {
         /*
         * Fetch data from server and update LiveData, if LiveData is null
         * */
-        if (allNewsViewModel.allNews.value == null) {
+        if (allNewsViewModel.allNews.value == null ) {
             allNewsViewModel.getNewsByCountry("in", activity!!.applicationContext)
         }
 

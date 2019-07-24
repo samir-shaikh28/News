@@ -35,6 +35,7 @@ class SearchNewsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_news, container, false)
+        Log.d("TAGGG", "Replaced")
         return mBinding.root
     }
 

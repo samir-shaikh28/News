@@ -28,7 +28,6 @@ class FetchNewsData {
 
             override fun onResponse(call: Call<News>, response: Response<News>) {
                 if (newsDao.selectAllNews().value == null) {
-                    Log.d("TAGGG", "Insert")
                     InsertNewsAsync(newsDao).execute(response.body())
                 } else {
                     Log.d("TAGGG", "Update")

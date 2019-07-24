@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.arlib.floatingsearchview.FloatingSearchView
 import com.example.news.app.App
 import com.example.news.databinding.ActivityMainBinding
 import com.example.news.reciever.NetworkConnectionChecker
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), NetworkConnectionChecker.ConnectivityR
         this.getPreferences(Context.MODE_PRIVATE)?.edit()?.putString(KEY, null)?.apply()
 
         val mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-
+filte
         // TODO: Remove binding from Layout File
         // Binding is not being used for updating data
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -53,27 +54,34 @@ class MainActivity : AppCompatActivity(), NetworkConnectionChecker.ConnectivityR
         // Setting Default fragment to HomeNewsFragment
         changeFragment(homeFragment)
 
-        binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
-            override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
-                if (queryText.isNullOrBlank()) {
-                    changeFragment(homeFragment)
-                } else {
-                    if (networkStatus) {
-                        binding.searchBar.close()
-                        query.putString("QUERY", queryText as String?)
-                        searchFragment.arguments = query
-                        changeFragment(searchFragment)
-                    } else {
-                        Toast.makeText(this@MainActivity, "You're Offline", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                return false
-            }
 
-            override fun onQueryTextChange(newText: CharSequence?) {
-                if (newText.isNullOrBlank()) {
-                }
-            }
+//
+//        binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
+//            override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
+//                if (queryText.isNullOrBlank()) {
+//                    changeFragment(homeFragment)
+//                } else {
+//                    if (networkStatus) {
+//                        Log.d("TAGGG", "Submitted: $queryText")
+//                        binding.searchBar.close()
+//                        query.putString("QUERY", queryText as String?)
+//                        searchFragment.arguments = query
+//                        changeFragment(searchFragment)
+//                    } else {
+//                        Toast.makeText(this@MainActivity, "You're Offline", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: CharSequence?) {
+//                if (newText.isNullOrBlank()) {
+//                }
+//            }
+//        })
+
+        binding.floatingSearchView.setOnQueryChangeListener(object : FloatingSearchView.OnQueryChangeListener{
+
         })
     }
 
@@ -96,7 +104,6 @@ class MainActivity : AppCompatActivity(), NetworkConnectionChecker.ConnectivityR
     }
 
     override fun onNetworkConnectionChanged(status: Boolean) {
-        Log.d("TAGGG", "NEt Status Listener $status")
         changeStatusBarColor(status)
         networkStatus = status
     }
