@@ -23,29 +23,29 @@
             <!--search_clear_icon-->
             <!--search_logo-->
 
-            <!--<com.lapism.searchview.widget.SearchView-->
-                <!--android:id="@+id/searchBar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--app:search_hint="Search Here"-->
-                <!--app:searchIcon="@mipmap/ic_launcher"-->
-                <!--app:voiceIcon="@mipmap/ic_launcher"-->
-                <!--app:search_theme="dark"/>-->
-
-            <com.arlib.floatingsearchview.FloatingSearchView
-                android:id="@+id/floating_search_view"
+            <com.lapism.searchview.widget.SearchView
+                android:id="@+id/searchBar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
-                app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
-                app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
-                app:floatingSearch_searchHint="Search Here"
-                app:floatingSearch_suggestionsListAnimDuration="250"
-                app:floatingSearch_showSearchKey="true"
-                app:floatingSearch_leftActionMode="showSearch"
-                app:floatingSearch_showOverFlowMenu="false"
-                app:floatingSearch_menu="@menu/main"
-                app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+                android:layout_height="wrap_content"
+                app:search_hint="Search Here"
+                app:searchIcon="@mipmap/ic_launcher"
+                app:voiceIcon="@mipmap/ic_launcher"
+                app:search_theme="dark"/>
+
+            <!--<com.arlib.floatingsearchview.FloatingSearchView-->
+                <!--android:id="@+id/floating_search_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"-->
+                <!--app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"-->
+                <!--app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"-->
+                <!--app:floatingSearch_searchHint="Search Here"-->
+                <!--app:floatingSearch_suggestionsListAnimDuration="250"-->
+                <!--app:floatingSearch_showSearchKey="true"-->
+                <!--app:floatingSearch_leftActionMode="showSearch"-->
+                <!--app:floatingSearch_showOverFlowMenu="false"-->
+                <!--app:floatingSearch_menu="@menu/main"-->
+                <!--app:floatingSearch_close_search_on_keyboard_dismiss="true"/>-->
 
             <LinearLayout
                 android:id="@+id/nav_host_fragment"

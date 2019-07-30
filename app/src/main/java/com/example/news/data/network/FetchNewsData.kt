@@ -30,7 +30,6 @@ class FetchNewsData {
                 if (newsDao.selectAllNews().value == null) {
                     InsertNewsAsync(newsDao).execute(response.body())
                 } else {
-                    Log.d("TAGGG", "Update")
                     UpdateNewsAsync(newsDao).execute(response.body())
                 }
                 allNews.value = response.body()

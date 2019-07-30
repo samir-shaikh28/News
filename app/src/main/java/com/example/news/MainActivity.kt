@@ -35,14 +35,14 @@ class MainActivity : AppCompatActivity(), NetworkConnectionChecker.ConnectivityR
         super.onCreate(savedInstanceState)
 
         val query = Bundle()
-        val searchFragment = SearchNewsFragment()
+//        val searchFragment = SearchNewsFragment()
         val homeFragment = HomeNewsFragment()
 
         // Initial Value of Search Query
         this.getPreferences(Context.MODE_PRIVATE)?.edit()?.putString(KEY, null)?.apply()
 
         val mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-filte
+
         // TODO: Remove binding from Layout File
         // Binding is not being used for updating data
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -55,34 +55,38 @@ filte
         changeFragment(homeFragment)
 
 
-//
-//        binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
-//            override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
-//                if (queryText.isNullOrBlank()) {
-//                    changeFragment(homeFragment)
-//                } else {
-//                    if (networkStatus) {
-//                        Log.d("TAGGG", "Submitted: $queryText")
-//                        binding.searchBar.close()
-//                        query.putString("QUERY", queryText as String?)
-//                        searchFragment.arguments = query
-//                        changeFragment(searchFragment)
-//                    } else {
-//                        Toast.makeText(this@MainActivity, "You're Offline", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: CharSequence?) {
-//                if (newText.isNullOrBlank()) {
-//                }
+
+        binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
+            override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
+                if (queryText.isNullOrBlank()) {
+                    changeFragment(homeFragment)
+                } else {
+                    if (networkStatus) {
+                        Log.d("TAGGG", "Submitted: $queryText")
+                        binding.searchBar.close()
+                        query.putString("QUERY", queryText as String?)
+                        val searchFragment = SearchNewsFragment()
+                        searchFragment.arguments = query
+                        changeFragment(searchFragment)
+                    } else {
+                        Toast.makeText(this@MainActivity, "You're Offline", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: CharSequence?) {
+                if (newText.isNullOrBlank()) {
+                    changeFragment(homeFragment)
+                }
+            }
+        })
+
+//        binding.floatingSearchView.setOnQueryChangeListener(object : FloatingSearchView.OnQueryChangeListener{
+//            override fun onSearchTextChanged(oldQuery: String?, newQuery: String?) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //            }
 //        })
-
-        binding.floatingSearchView.setOnQueryChangeListener(object : FloatingSearchView.OnQueryChangeListener{
-
-        })
     }
 
     private fun changeFragment(fragment: Fragment) {
