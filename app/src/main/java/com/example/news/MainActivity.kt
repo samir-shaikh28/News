@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), NetworkConnectionChecker.ConnectivityR
         this.getPreferences(Context.MODE_PRIVATE)?.edit()?.putString(KEY, null)?.apply()
 
         val mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-filte
+//filte
         // TODO: Remove binding from Layout File
         // Binding is not being used for updating data
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -55,7 +55,7 @@ filte
         changeFragment(homeFragment)
 
 
-//
+
 //        binding.searchBar.setOnQueryTextListener(object : Search.OnQueryTextListener {
 //            override fun onQueryTextSubmit(queryText: CharSequence?): Boolean {
 //                if (queryText.isNullOrBlank()) {
@@ -80,9 +80,9 @@ filte
 //            }
 //        })
 
-        binding.floatingSearchView.setOnQueryChangeListener(object : FloatingSearchView.OnQueryChangeListener{
-
-        })
+//        binding.floatingSearchView.setOnQueryChangeListener(object : FloatingSearchView.OnQueryChangeListener{
+//
+//        })
     }
 
     private fun changeFragment(fragment: Fragment) {
